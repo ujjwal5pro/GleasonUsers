@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GleasonUsers.Views.HomePageDetail"
+             Title="Dashboard">
+    
+  <StackLayout Padding="10">
+        <Frame Padding="10" Margin="25">
+            <StackLayout>
+                <Label Text="Users" FontSize="50" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="Center"></Label>
+                <Label x:Name="UserCount" Text="0" TextColor="Black" FontSize="25" FontAttributes="Bold" HorizontalOptions="Center"></Label>
+            </StackLayout>
+        </Frame>
+  </StackLayout>
+</ContentPage>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GleasonUsers.LoginPage">
+    <ContentPage.Content>
+        <StackLayout Padding="20" >
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Label Text="Gleason" FontSize="50" TextColor="Blue" FontAttributes="Bold" 
+                   HorizontalOptions="Center" ></Label>
+                <Label Text="Users Management" FontAttributes="Bold"  FontSize="25"
+                   HorizontalOptions="Center" VerticalOptions="CenterAndExpand"></Label>
+            </StackLayout>
+            <!--Login Stack-->
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Entry x:Name="Username" Placeholder="Username"></Entry>
+                <Entry x:Name="Password" Placeholder="Password" IsPassword="True"></Entry>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Button Text="Login" Clicked="LoginButtonClicked"></Button>
+                    <Button Text="Reset" Clicked="ResetButtonClicked"></Button>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

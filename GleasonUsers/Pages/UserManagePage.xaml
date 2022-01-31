@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GleasonUsers.Pages.UserManagePage"
+             Title="User Management">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" x:Name="AddNewToolBarButton" Clicked="AddToolbarItem_Clicked" Order="Primary"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout x:Name="MainViewStack" IsVisible="true">
+                <StackLayout Orientation="Horizontal">
+                    <SearchBar x:Name="SearchUser" TextChanged="SearchUser_TextChanged" HorizontalOptions="FillAndExpand"></SearchBar>
+                </StackLayout>
+                <ListView x:Name="UsersListView"
+                      IsPullToRefreshEnabled="True" 
+                      Refreshing="UsersListView_Refreshing"
+                      ItemTapped="UsersListView_ItemTapped" >
+                    <ListView.Header>
+                        <StackLayout>
+                            <Label Text="Users"
+                           FontSize="20"
+                           FontAttributes="Bold" 
+                           BackgroundColor="Gray"
+                           TextColor="White"></Label>
+                        </StackLayout>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Update" Clicked="UpdateMenuItem_Clicked"></MenuItem>
+                                    <MenuItem Text="Delete" Clicked="DeleteMenuItem_Clicked"></MenuItem>
+                                </ViewCell.ContextActions>
+                                <StackLayout VerticalOptions="Center" Padding="5" Orientation="Horizontal">
+                                    <Frame WidthRequest="1" Margin="2" CornerRadius="5"/>
+
+                                    <Label Text="{Binding FirstName}" VerticalTextAlignment="Center" />
+                                    <Label Text="{Binding LastName}" VerticalTextAlignment="Center" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            
+            <!--Add/Update User-->
+            <StackLayout x:Name="AddUserStack" IsVisible="false" VerticalOptions="FillAndExpand" Padding="10">
+                <BoxView></BoxView>
+                <Label Text="Add user" FontSize="20" FontAttributes="Bold"/>
+                <Line BackgroundColor="Gray"></Line>
+                <StackLayout Orientation="Vertical"
+                         HorizontalOptions="Start"
+                         RadioButtonGroup.GroupName="UserRoleRadioButton" RadioButtonGroup.SelectedValue="{Binding Role}">
+                    <Label Text="Role"></Label>
+                    <RadioButton x:Name="RadioButton0" Value="Gleasons Admin" Content="Gleasons Admin" CheckedChanged="RadioButton_CheckedChanged"></RadioButton>
+                    <RadioButton x:Name="RadioButton1" Value="User" Content="User" CheckedChanged="RadioButton_CheckedChanged"></RadioButton>
+                    <RadioButton x:Name="RadioButton2" Value="Customer Admin" Content="Customer Admin" CheckedChanged="RadioButton_CheckedChanged"></RadioButton>
+                </StackLayout>
+                <Label Text="First Name"></Label>
+                <Entry x:Name="FirstNameEntry" Text="{Binding FirstName}"/>
+                <Label Text="Last Name"></Label>
+                <Entry x:Name="LastNameEntry" Text="{Binding LastName}"/>
+                <Label Text="Email" />
+                <Entry x:Name="EmailEntry" Text="{Binding Email}"></Entry>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="End">
+                    <Button x:Name="AddUserButton" Text="Add" Clicked="AddUserButtonClicked"></Button>
+                    <Button x:Name="AddCancelButton" Text="Cancel" Clicked="AddCancelButton_Clicked"></Button>
+                </StackLayout>
+            </StackLayout>
+
+            <!-- View User -->
+            <StackLayout x:Name="ViewUserStack" IsVisible="false" VerticalOptions="FillAndExpand" Padding="10">
+                <BoxView></BoxView>
+                <Frame WidthRequest="50" HeightRequest="50" HorizontalOptions="Center">
+                    <Label Text="i" FontSize="45" FontAttributes="Bold" TextColor="Blue" HorizontalOptions="Center"></Label>
+                </Frame>
+                <BoxView></BoxView>
+                <StackLayout HorizontalOptions="Fill">
+                    <Label Grid.Row="0" Grid.Column="0" Text="Role" VerticalTextAlignment="Center" FontAttributes="Bold"></Label>
+                    <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Role}" IsEnabled="False"></Entry>
+                    <Label Grid.Row="1" Grid.Column="0" Text="First Name" VerticalTextAlignment="Center" FontAttributes="Bold"></Label>
+                    <Entry Grid.Row="1" Grid.Column="1" Text="{Binding FirstName}" IsEnabled="False"></Entry>
+                    <Label Grid.Row="2" Grid.Column="0" Text="Last Name" VerticalTextAlignment="Center" FontAttributes="Bold"></Label>
+                    <Entry Grid.Row="2" Grid.Column="1" Text="{Binding LastName}" IsEnabled="False"></Entry>
+                    <Label Grid.Row="3" Grid.Column="0" Text="Email" VerticalTextAlignment="Center" FontAttributes="Bold"></Label>
+                    <Entry Grid.Row="3" Grid.Column="1" Text="{Binding Email}" IsEnabled="False"></Entry>
+                </StackLayout>
+                <Button x:Name="UserViewCloseButton" Text="Close" Clicked="UserViewCloseButton_Clicked"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
